@@ -1,0 +1,48 @@
+﻿@model u19239409_HW05.Models.BorrowsVM
+@{
+    ViewBag.Title = "Book Details Page";
+}
+
+<section>
+    <br />
+    <div class="form-group col-sm-12">
+        <h1>@Model.SelectedBookName - @Model.SelectedBookStatus</h1>
+    </div>
+    <div class="form-group col-sm-9">
+        <h2>#Borrows - @Model.BorrowLogs.Count()</h2>
+    </div>
+    <div class="form-group col-sm-3" style="margin-top:20px;">
+        @Html.ActionLink("View Students", "ViewStudents", "Home", new { @class = "btn btn-primary" })
+    </div>
+</section>
+
+<section>
+    <div class="form-group col-sm-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Taken Date</th>
+                    <th scope="col">Brought Date</th>
+                    <th scope="col">Borrowed By</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var borrow in Model.BorrowLogs)
+                {
+                    <tr>
+                        <td scope="row">@borrow.borrowId</td>
+                        <td>@borrow.takendate</td>
+                        <td>@borrow.broughtdate</td>
+                        <td>@borrow.borrower</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+
+

@@ -1,0 +1,110 @@
+﻿@model IEnumerable<u19239409_HW05.Models.Student>
+@{
+    ViewBag.Title = "Students Page";
+}
+
+@{
+    var id = Session["BookID"];
+}
+
+<section>
+    <br />
+    <div class="form-group col-sm-12">
+        <h1>Students</h1>
+    </div>
+    @using (Html.BeginForm("ViewStudents", "Home", FormMethod.Post))
+    {
+        <div class="form-group col-sm-3">
+            <input type="text" name="stuName" class="form-control" placeholder="Search Student Name" />
+        </div>
+        <div class="form-group col-sm-3">
+            <select name="selcClass" class="form-control">
+                <option value="0">Select a Class</option>
+                <option value="9A">9A</option>
+                <option value="9B">9B</option>
+                <option value="9C">9C</option>
+                <option value="9D">9D</option>
+                <option value="9E">9E</option>
+                <option value="10A">10A</option>
+                <option value="10B">10B</option>
+                <option value="10C">10C</option>
+                <option value="10D">10D</option>
+                <option value="10E">10E</option>
+                <option value="11A">11A</option>
+                <option value="11B">11B</option>
+                <option value="11C">11C</option>
+                <option value="11D">11D</option>
+                <option value="11E">11E</option>
+                <option value="12A">12A</option>
+                <option value="12B">12B</option>
+                <option value="12C">12C</option>
+                <option value="12D">12D</option>
+                <option value="12E">12E</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-3">
+            <input type="submit" value="Search" class="form-control btn btn-success" />
+        </div>
+        <div class="form-group col-sm-3 pull-right">
+            @Html.ActionLink("Clear", "ViewStudents", "Home", new { @class = "form-control btn btn-danger" })
+        </div>
+    }
+</section>
+
+<script src="//code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.return').hide();
+        $('.ReturnBtn').hide();
+
+        var status = 
+      
+      
+    });
+</script>
+
+<section>
+    <div class="form-group col-sm-12">
+
+        @using (Html.BeginForm("ViewBookDetails", "Home", FormMethod.Post))
+        {
+            <table class="table borrow">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Surname</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Points</th>
+                        <th scope="col" class="borrow">Borrow Book</th>
+                        <th scope="col" class="return">Return Book</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td scope="row">@student.studentId</td>
+                            <td>@student.studentname</td>
+                            <td>@student.studentsurname</td>
+                            <td>@student.Class</td>
+                            <td>@student.point</td>
+                            <td class="borrow">
+                                @Html.ActionLink("Borrow Book", "BorrowBook", "Home", new { StudentID = student.studentId, BookID = ViewData["BookID"] }, new { @class = "btn btn-primary BorrowBtn" })
+                            </td>
+                            <td class="return">
+                                @Html.ActionLink("Return Book", "ReturnBook", "Home", new { BookID = ViewData["BookID"] }, new { @class = "btn btn-primary ReturnBtn" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</section>
+
+
+
+
+
+

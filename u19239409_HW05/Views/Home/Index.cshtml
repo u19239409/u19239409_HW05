@@ -1,0 +1,122 @@
+﻿@model IEnumerable<u19239409_HW05.Models.Book>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<section>
+    <br />
+    <div class="form-group col-sm-12">
+        <h1>Books</h1>
+    </div>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+        <div class="form-group col-sm-4">
+            <input type="text" name="bookName" class="form-control" placeholder="Search Book Name" />
+        </div>
+        <div class="form-group col-sm-2">
+            <select name="selcType" class="form-control">
+                <option value="0">Select a Type</option>
+                <option value="Science fiction">Science fiction</option>
+                <option value="Satire">Satire</option>
+                <option value="Drama">Drama</option>
+                <option value="Action and Adventure">Action and Adventure</option>
+                <option value="Romance">Romance</option>
+                <option value="Mystery">Mystery</option>
+                <option value="Horror">Horror</option>
+                <option value="Health">Health</option>
+                <option value="Guide">Guide</option>
+                <option value="Diaries">Diaries</option>
+                <option value="Comics">Comics</option>
+                <option value="Journals">Journals</option>
+                <option value="Biographies">Biographies</option>
+                <option value="Fantasy">Fantasy</option>
+                <option value="History">History</option>
+                <option value="Science">Science</option>
+                <option value="Art">Art</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-2">
+            <select name="selcAuthor" class="form-control">
+                <option value="0">Select a Author</option>
+                <option value="Howells">Howells</option>
+                <option value="Brown">Brown</option>
+                <option value="London">London</option>
+                <option value="Blaisdell">Blaisdell</option>
+                <option value="Butler">Butler</option>
+                <option value="Machen">Machen</option>
+                <option value="Lucretius">Lucretius</option>
+                <option value="Tagore">Tagore</option>
+                <option value="Asimov">Asimov</option>
+                <option value="Dickens">Dickens</option>
+                <option value="Emerson">Emerson</option>
+                <option value="Canfield">Canfield</option>
+                <option value="Boccaccio">Boccaccio</option>
+                <option value="Orwell">Orwell</option>
+                <option value="Ovid">Ovid</option>
+                <option value="Stevenson">Stevenson</option>
+                <option value="Woolf">Woolf</option>
+                <option value="Eliot">Eliot</option>
+                <option value="Edwards">Edwards</option>
+                <option value="Dostoevsky">Dostoevsky</option>
+                <option value="Dickinson">Dickinson</option>
+                <option value="Ferber">Ferber</option>
+                <option value="LeFanu">LeFanu</option>
+                <option value="DosPassos">DosPassos</option>
+                <option value="Stuart">Stuart</option>
+                <option value="Nabokov">Nabokov</option>
+                <option value="Spyri">Spyri</option>
+                <option value="Dowson">Dowson</option>
+                <option value="Foote">Foote</option>
+                <option value="Grey">Grey</option>
+                <option value="Lovecraft">Lovecraft</option>
+                <option value="Pepys">Pepys</option>
+                <option value="Sweetser">Sweetser</option>
+                <option value="Lampton">Lampton</option>
+                <option value="Goose">Goose</option>
+                <option value="Abbott">Abbott</option>
+            </select>
+        </div>
+        <div class="form-group col-sm-2">
+            <input type="submit" value="Search" class="form-control btn btn-success" />
+        </div>
+        <div class="form-group col-sm-2">
+            @Html.ActionLink("Clear", "Index", "Home", new { @class = "form-control btn btn-danger"})
+        </div>  
+    }
+</section>
+
+<section>
+    <div class="form-group col-sm-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Page Count</th>
+                    <th scope="col">Points</th>
+                    <th scope="col">Status</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <td scope="row">@book.bookId</td>
+                        <td>@book.bookname</td>
+                        <td>@book.authorname</td>
+                        <td>@book.typename</td>
+                        <td>@book.pagecount</td>
+                        <td>@book.point</td>
+                        <td>@book.status</td>
+                        <td>
+                            @Html.ActionLink("View", "ViewBookDetails", "Home", new { BookId = @book.bookId}, new { @class = "btn btn-primary" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>
